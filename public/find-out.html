@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Out More</title> 
+    <link rel="stylesheet" href="css/find-out.css"> 
+    <link rel="stylesheet" href="css/side-bar.css">         
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="logo">
+        <img src="img/logo.png" alt="Logo">
+        <h2>TunaLog.</h2>
+    </div>
+    <div class="menu">         
+        <a href="dashboard.html"class="active"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="pelabuhan.html"><i class="fas fa-building"></i> Pelabuhan</a>
+        <a href="logbook.html"><i class="fas fa-clipboard-check"></i> Report</a>           
+        <a href="rfmo.html" ><i class="fas fa-globe"></i> RFMO</a>          
+        <a href="realtime.html"><i class="fas fa-business-time"></i>Real time</a>       
+    </div>
+  </div>
+    <div class="main-content">
+      <div class="header">
+        <div class="left-section">                
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search" onkeyup="searchFunction()" autocomplete="off">
+                <i class="fas fa-search"></i>
+            </div>
+            <div id="search-results" class="search-results"></div>
+        </div>
+        <div class="user-icons">
+            <div class="language-selector">
+              <img src="img/uk-flag.png" alt="English" onclick="setLanguage('en')">
+              <img src="img/id-flag.png" alt="Indonesian" onclick="setLanguage('id')">
+            </div>                
+            <div class="user-profile">
+                <img src="img/me.png" alt="User">
+                <span>Tabina Irviana</span>
+                <div class="dropdown-menu">
+                    <a href="my-profile.html">My Profile</a>
+                    <button id="logoutButton">Logout</button>
+                </div>
+            </div>
+        </div>
+      </div> 
+
+        <div class="video-container">          
+          <video autoplay loop muted playsinline class="background-video">
+            <source src="img/fish.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>                 
+          <div class="content-overlay">
+            <h1>Sustaining Our Oceans,<br> Empowering Fisheries</h1>
+            <p data-translate="video-text">TunaLog adalah layanan untuk pengelolaan perikanan TCT (tuna, cakalang, tongkol) berbasis website di Samudra Hindia</p>            
+          </div> 
+        </div>
+        <div class="marquee-container">
+          <div class="marquee">
+            <span>• Management • Sustainable • Fisheries • Blue • Economy • Management • Sustainable • Fisheries • Blue • Economy •</span>
+          </div>
+        </div>
+        <div class="explanation-container">
+          <div class="text">
+            <h2 data-translate="sustainable-fisheries">Sustainable Fisheries</h2>
+            <p ><span data-translate="sustainable-fisheries-text">Perikanan tangkap adalah aktivitas yang melibatkan kegiatan penangkapan ikan di berbagai badan air, termasuk danau dan lingkungan laut. 
+              Keberlanjutan menjadi perhatian utama, dengan ancaman dari <i><b>illegal, unreported, unregulated (IUU) Fishing</b></i> dan penggunaan penangkapan ikan yang merusak.
+              Untuk mengatasi permasalahan tersebut, upaya seperti promosi alat tangkap ramah lingkungan, peningkatan pengelolaan perikanan, serta pengembangan strategi 
+              pemulihan ekonomi jangka pendek dan jangka panjang</span> <a href="https://doi.org/10.29244/agro-maritim.0301.126-131">(Nurani dan Suherman 2021)</a>
+            </p>
+          </div>
+          <div class="model">           
+            <model-viewer src="img/ikan/tuna_fish.glb" alt="3D Tuna Model" auto-rotate camera-controls ar shadow-intensity="1"></model-viewer>
+          </div>
+        </div>
+        <div class="powered-by">
+          <h2>Powered By</h2>
+          <div class="tct-banner">
+            <div class="logo-section">
+                <a href="https://www.ipb.ac.id/beranda/">
+                  <img src="img/ipb.png" alt="IPB Logo">
+                </a>
+            </div>
+            <div class="text-section">
+                <h1>IPB University</h1>                
+            </div>                
+          </div>
+          <div class="tct-banner-kkp">
+            <div class="logo-section-kkp">
+                <a href="https://kkp.go.id/">
+                  <img src="img/kkp.png" alt="KKP Logo">
+                </a>
+            </div>
+            <div class="text-section-kkp">
+                <h1>Ministry of Marine Affairs and Fisheries</h1>                
+            </div>                
+          </div>          
+        </div>
+              
+
+    </div>
+    
+      
+      
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
+    <script src="js/search-bar.js"></script>
+    <script src="js/translation.js"></script>
+    <script src="js/log-out.js"></script>
+</body>
+</html>

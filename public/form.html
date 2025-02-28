@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logbook Form</title>
+    <link rel="stylesheet" href="css/form.css">   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+ 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 500px;  
+            width: 90%;
+            margin: auto;
+            margin-bottom: 50px;
+        }
+    </style>  
+        
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="img/logo.png" alt="Logo">
+            <h2>TunaLog.</h2>
+        </div>
+        <div class="menu">         
+            <a href="dash-board.html"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="pelabuhan.html"><i class="fas fa-building"></i> Pelabuhan</a>
+            <a href="form.html"class="active"><i class="fas fa-clipboard-check"></i> Report</a>           
+            <a href="rfmo.html" ><i class="fas fa-globe"></i> RFMO</a>
+            <a href="logbook.html"><i class="fas fa-clipboard-list"></i>Logbook Data</a>   
+            <a href="#"><i class="fas fa-business-time"></i>Real time</a>       
+        </div>
+    </div>
+    <div class="main-content">
+        
+    
+        <div class="dashboard">
+            
+            <div class="form-container">
+                <h2>Pelaporan Penangkapan TCT</h2>
+                <form id="fishingReportForm" class="TunaForm" method="POST" action="/submit" enctype="multipart/form-data"">                  
+                    <label for="dateDeparture" class="required">Tanggal Berangkat:</label>
+                    <input type="date" id="dateDeparture" name="dateDeparture" required>
+            
+                    <label for="dateArrival" class="required">Tanggal Kedatangan:</label>
+                    <input type="date" id="dateArrival" name="dateArrival" required>
+                
+                    <label for="latitude">Lintang (Latitude):</label>
+                    <input type="text" id="latitude" name="latitude" placeholder="Masukkan lintang" required><br><br>
+            
+                    <label for="longitude">Bujur (Longitude):</label>
+                    <input type="text" id="longitude" name="longitude" placeholder="Masukkan bujur" required><br><br>
+            
+                    <button class="zoom" type="button" id="zoomToPoint">Zoom to Point</button>
+                                    
+                    <!-- Map Container -->
+                    <div id="map"></div>
+                    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                    
+                    <script src="js/data-entry.js"></script>
+            
+                    <label for="namaKapal" class="required">Nama Kapal</label>
+                    <input type="text" id="namaKapal" name="namaKapal" required>
+                
+                    <label for="alatTangkap" class="required">Alat Tangkap</label>
+                    <select id="alatTangkap" name="alatTangkap" required>
+                        <option value="">-- Pilih --</option>
+                        <option value="Purse Seine">Purse Seine</option>
+                        <option value="Longline">Longline</option>
+                        <option value="Poll and Line">Poll and Line</option>
+                        <option value="Troll">Troll</option>
+                        <option value="Gill Net">Gill Net</option>
+                        <option value="Handline">Handline</option>
+                        <option value="Other">Other</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                
+                    <label for="namaJenis" class="required">Nama Jenis Ikan</label>                
+                    <input type="text" id="namaJenis" name="namaJenis" required>
+                    
+                    <label for="beratTotal" class="required">Berat Total (Kg)</label>
+                    <input type="number" id="beratTotal" name="beratTotal" min="0" required>
+                
+                    <label for="namaPelabuhanKedatangan" class="required">Pelabuhan Kedatangan</label>
+                    <select id="namaPelabuhanKedatangan" name="namaPelabuhanKedatangan" required>
+                        <option value="">-- Pilih --</option>
+                        <option value="Nizam Zachman">Nizam Zachman</option>
+                        <option value="Teluk Sinabang">Teluk Sinabang</option>
+                        <option value="Cilacap">Cilacap</option>
+                        <option value="Palabuhanratu">Palabuhanratu</option>
+                        <option value="Prigi">Prigi</option>
+                        <option value="Pondok Dadap">Pondok Dadap</option>
+                        <option value="Labuhan Lombok">Labuhan Lombok</option>
+                        <option value="Benoa">Benoa</option>                  
+                    </select>
+                
+                    <label for="namaPelabuhanKeberangkatan" class="required">Pelabuhan Keberangkatan</label>
+                    <select id="namaPelabuhanKeberangkatan" name="namaPelabuhanKeberangkatan" required>
+                        <option value="">-- Pilih --</option>
+                        <option value="Nizam Zachman">Nizam Zachman</option>
+                        <option value="Teluk Sinabang">Teluk Sinabang</option>
+                        <option value="Cilacap">Cilacap</option>
+                        <option value="Palabuhanratu">Palabuhanratu</option>
+                        <option value="Prigi">Prigi</option>
+                        <option value="Pondok Dadap">Pondok Dadap</option>
+                        <option value="Labuhan Lombok">Labuhan Lombok</option>
+                        <option value="Benoa">Benoa</option>                  
+                    </select>
+                                    
+                    <label for="uploadFoto">Upload Foto</label>
+                    <input type="file" id="uploadFoto" name="uploadFoto">
+                   
+                    <label for="catatanTambahan">Catatan Tambahan</label>
+                    <textarea id="catatanTambahan" name="catatanTambahan" rows="4" placeholder="Masukan informasi tambahan yang mungkin relevan"></textarea>
+                                  
+                    <div class="button-group">
+                        <button class="batal" type="button" onclick="document.getElementById('fishingReportForm').reset();">Batal</button>
+                        <button type="submit">Submit</button>                        
+                    </div>                                        
+                </form>
+            </div>
+
+            <div id="notification" class="notification hidden">
+                <p id="notificationMessage"></p>
+            </div>                              
+        </div>        
+
+    </div>
+    
+    <script>
+      // JavaScript to handle dropdown toggle
+      const dropdownBtn = document.querySelector('.dropdown-btn');
+      const submenu = document.querySelector('.submenu');
+  
+      dropdownBtn.addEventListener('click', function() {
+          submenu.classList.toggle('show');
+          dropdownBtn.classList.toggle('active');
+      });
+  </script>
+  <script src="js/form-app.js"></script>
+</body>
+</html>

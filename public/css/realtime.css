@@ -1,0 +1,339 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+  font-family: "Poppins", sans-serif;
+}
+body, html {  
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: white;
+  overflow: hidden; /* Ini akan menghindari body ikut scrolling */
+}
+.main-content {
+  margin-left: 250px;
+  flex: 1;
+  background-color: #f0f0f0;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto; 
+  transition: margin-left 0.3s;
+}
+/*sidebar*/
+.sidebar {
+  width: 250px; /* Adjusted width to make it smaller */
+  height: calc(100vh - 80px); 
+  position: fixed;
+  background-color: #fff;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;  
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.logo img {
+  width: 50px;
+  margin-right: 10px;
+}
+.logo h2 {
+  font-size: 30px;
+  color: #06085c;
+  margin-bottom: 0px;
+}
+.menu p {
+  margin: 40px 0;
+  font-size: 12px; /* Restored original font size */
+  color: #777;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.menu a {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  text-decoration: none;
+  font-size: 16px; /* Restored original font size */
+  color: #333;
+  transition: 0.5s;
+  margin-bottom: 20px;
+}
+.menu a i {
+  margin-right: 10px;
+}
+.menu a.active, .menu a:hover {
+  background-color: #dfe0ff;
+  margin-top: 10px ;
+  color: #06085c;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+ 
+/*Header*/ 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s;
+  position: fixed;
+  top: 0;
+  left: 250px;
+  width: calc(100% - 250px);
+  padding: 10px 20px;
+  background-color: #fff;
+  z-index: 1000;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+}
+.menu-toggle {
+  cursor: pointer;
+}
+/*search bar*/
+.search-bar {
+  align-items: center;
+  margin-left: 20px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  padding: 5px 15px;
+  border: 1px solid #ddd;
+}
+.search-bar input {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 5px;
+}
+.search-results {
+  position: absolute;
+  top: 40px; /* Adjust this value to control dropdown position */
+  left: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none; /* Hidden by default */
+}
+
+.search-results p {
+  padding: 10px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.search-results p:hover {
+  background-color: #f1f1f1;
+}
+.user-icons {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  transition: margin-left 0.3s;
+}
+.user-icons i, .user-profile img {
+  margin-left: 15px;
+  cursor: pointer;
+}
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+.user-profile img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+/*user dropdown*/
+.user-profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.user-profile:hover {
+  background-color: #f5f5f5;
+}
+.user-profile img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+.user-profile span {
+  font-size: 14px;
+  color: #333;
+}
+  .user-profile .dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 200px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+    padding: 10px 0;
+  }
+  .user-profile .dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  .user-profile .dropdown-menu a:hover {
+    background-color: #f5f5f5;
+  }
+  .user-profile .dropdown-menu a i {
+    margin-right: 10px;
+    color: black;
+  }
+  .user-profile:hover .dropdown-menu {
+    display: block;
+  }
+  #logoutButton{    
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: .5s;
+  display: block;
+  margin: 0 auto;
+  width: fit-content  ;
+  }
+  #logoutButton:hover{
+    background-color: #c62c3c;
+  }
+/*languange selector*/
+.language-selector {  
+  top: 10px;
+  right: 10px;
+  z-index: 1001;
+  display: flex;
+  gap: 10px; 
+}
+.language-selector img {
+  width: 24px; 
+  height: 18px;
+  cursor: pointer;
+  border: 1px solid #ddd; 
+  border-radius: 3px; 
+  transition: opacity 0.3s ease; 
+}
+.language-selector img:hover {
+  opacity: 0.8; 
+}
+.language-selector img.active { 
+  border: 2px solid #007BFF; }
+
+
+/**/
+.dashboard h2 {
+  margin-top: 60px;
+  margin-bottom: 0px;
+  font-size: 20px;
+}
+.dashboard .container {
+  transition: width 0.3s ease; /* Transisi halus pada perubahan lebar */
+}
+
+/*table*/
+.container-realtime {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  position: relative;
+}
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color:#003366;
+}
+/*button*/
+.button-container {
+  position: absolute;
+  top: 20px; 
+  right: 20px; 
+  display: flex; 
+  gap: 10px; 
+}
+
+.button-container button {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: white;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Menambahkan efek transisi pada warna */
+}
+
+.button-container button:hover {
+  background-color: #0056b3; /* Mengubah warna saat hover */
+}
+
+.button-container button:active {
+  background-color: #004085; /* Mengubah warna saat tombol ditekan */
+}
+
+
+/*table*/
+.table-scroll {
+  overflow-x: scroll;
+  overflow-y: hidden; /* Ensure no vertical scroll */
+  width: 100%;
+  scrollbar-width: none; /* Hides scrollbar for Firefox */
+}
+.table-scroll::-webkit-scrollbar {
+  display: none; /* Hides scrollbar for Chrome, Safari, and Edge */
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  min-width: 1200px; /* Ensures horizontal scroll for smaller screens */
+}
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+#tanggalKeberangkatanSort {
+  cursor: pointer;
+  margin-left: 5px;
+}

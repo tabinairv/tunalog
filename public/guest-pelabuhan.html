@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelabuhan Pendaratan</title>
+    <link rel="stylesheet" href="css/pelabuhan.css"> 
+    <link rel="stylesheet" href="css/sidebar.css">        
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="img/logo.png" alt="Logo">
+            <h2>TunaLog.</h2>
+        </div>
+        <div class="menu">         
+            <a href="guest-dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a>
+            <a href="guest-pelabuhan.html"class="active"><i class="fas fa-building"></i><span>Pelabuhan</span></a>
+            <a href="guest-rfmo.html" ><i class="fas fa-globe"></i><span>RFMO</span></a>               
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="left-section">                
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search" onkeyup="searchFunction()" autocomplete="off">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div id="search-results" class="search-results"></div>
+            </div>           
+        </div> 
+        <div class="dashboard">
+          <h2>Pelabuhan Pendaratan</h2>
+          <div class="container-pelabuhan">
+            <div class="card">
+                <img alt="PPS Nizam Zachman" height="200" src="img/nizam.png" width="300"/>
+                <h3>
+                PPS Nizam Zachman
+                </h3>
+                <p class="location">
+                <i class="fas fa-map-marker-alt" ></i>
+                Jakarta Utara, DKI Jakarta
+                </p>
+                <a href="guest-nizam.html">
+                Learn More
+                </a>
+            </div>
+            <div class="card">
+                <img alt="PU Benoa" height="200" src="img/benoa.jpg" width="300"/>
+                <h3>PU Benoa</h3>
+                <p class="location">
+                <i class="fas fa-map-marker-alt">
+                </i>
+                Denpasar, Bali
+                </p>
+                <a href="guest-benoa.html">
+                Learn More
+                </a>
+            </div>
+            <div class="card">
+                <img alt="PPN Palabuhanratu" height="200" src="img/palabuhan.jpg" width="300"/>
+                <h3>
+                PPN Palabuhanratu
+                </h3>
+                <p class="location">
+                <i class="fas fa-map-marker-alt">
+                </i>
+                Sukabumi, Jawa Barat
+                </p>
+                <a href="guest-palabuhan.html">
+                Learn More
+                </a>
+            </div>
+            <div class="card">
+                <img alt="PPS Cilacap" height="200" src="img/cilacap.jpg" width="300"/>
+                <h3>
+                PPS Cilacap
+                </h3>
+                <p class="location">
+                <i class="fas fa-map-marker-alt">
+                </i>
+                Cilacap, Jawa Tengah
+                </p>
+                <a href="guest-cilacap.html">
+                Learn More
+                </a>
+            </div>
+            <div class="card">
+                <img alt="PPN Prigi" height="200" src="img/prigi.jpg" width="300"/>
+                <h3>
+                PPN Prigi
+                </h3>
+                <p class="location">
+                <i class="fas fa-map-marker-alt">
+                </i>
+                Trenggalek, Jawa Timur
+                </p>
+                <a href="guest-prigi.html">
+                Learn More
+                </a>
+            </div>
+            <div class="card">
+                <img alt="PPP Pondok Dadap" height="200" src="img/pd.jpg" width="300"/>
+                <h3>
+                  PPP Pondok Dadap
+                </h3>
+                <p class="location">
+                <i class="fas fa-map-marker-alt">
+                </i>
+                Malang, Jawa Timur
+                </p>
+                <a href="guest-pondok-dadap.html">
+                Learn More
+                </a>
+            </div>
+            <div class="card">
+                <img alt="PPP Labuhan Lombok" height="200" src="img/labuhan.jpg" width="300"/>
+                <h3>
+                  PPP Labuhan Lombok
+                </h3>
+                <p class="location">
+                <i class="fas fa-map-marker-alt">
+                </i>
+                Lombok Timur, NTB
+                </p>
+                <a href="guest-labuhan-lombok.html">
+                Learn More
+                </a>
+            </div>
+          </div>         
+        </div>        
+    </div>  
+    <script src="js/guest-search-bar.js"></script>
+    <script src="js/sidebar.js"></script>  
+</body>
+</html>
+
+

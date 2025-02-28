@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logbook</title>
+    <link rel="stylesheet" href="css/logbook.css">       
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="img/logo.png" alt="Logo">
+            <h2>TunaLog.</h2>
+        </div>
+        <div class="menu">         
+            <a href="dash-board.html"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="pelabuhan.html"><i class="fas fa-building"></i> Pelabuhan</a>
+            <a href="form-2.html"><i class="fas fa-clipboard-check"></i> Report</a>           
+            <a href="rfmo.html" ><i class="fas fa-globe"></i> RFMO</a>
+            <a href="logbook.html"class="active"><i class="fas fa-clipboard-list"></i>Logbook Data</a>   
+            <a href="realtime.html"><i class="fas fa-business-time"></i>Real time</a>       
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="left-section">                
+                <div class="search-bar">
+                    <input type="text" placeholder="search">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            <div class="user-icons">
+                <div class="logout-icon">
+                    <i class="fas fa-power-off poweroff-icon" alt="Logout Icon" title="Logout"></i>
+                </div>
+                <div class="notification-icon">
+<i class="fas fa-bell" alt="Notification Icon" class="bell-icon" title="Notifications"></i>
+                    <span class="tooltip">Notification</span>
+                    <span class="tooltip">Notification</span>
+                </div>
+                <div class="user-profile">
+                    <img src="img/me.png" alt="User">
+                    <span>Tabina Irviana</span>
+                    
+                </div>
+            </div>
+        </div> 
+        <div class="dashboard">
+          <h2>Logbook Perikanan TCT</h2> 
+          <div class="container">
+            <h1>Identitas Kapal</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nomor Registrasi Kapal</th>
+                        <th>Nama Kapal</th>
+                        <th>Ukuran Kapal</th>
+                        <th>Jenis Alat Tangkap</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DKP-12345-WPP-712</td>
+                        <td>Surya Kencana</td>
+                        <td>35 GT</td>
+                        <td>Longline</td>
+                    </tr>
+                    <tr>
+                        <td>DKP-56789-WPP-718</td>
+                        <td>Tunas Abadi</td>                        
+                        <td>75 GT</td>
+                        <td>Purse Seine</td>                    
+                    </tr> 
+                </tbody>
+            </table>
+          </div>   
+          <div class="container">
+            <h1>Identitas Nahkoda dan Pemilik Kapal</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nomor Registrasi Kapal</th>                        
+                        <th>Nama Nahkoda</th>
+                        <th>Nama Pemilik Kapal</th>
+                        <th>Kontak Pemilik Kapal</th>
+                        <th>Alamat Pemilik Kapal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DKP-12345-WPP-712</td>
+                        <td>Dodi Suredi</td>
+                        <td>William Sanjaya</td>
+                        <td>08XXXXXXXX</td>
+                        <td>Surabaya</td>
+                    </tr>
+                    <tr>
+                        <td>DKP-56789-WPP-718</td>
+                        <td>Suherni</td>
+                        <td>Michael Tanjung</td>
+                        <td>08XXXXXXXX</td>
+                        <td>Jakarta</td>                    
+                    </tr> 
+                </tbody>
+            </table>
+          </div>  
+          <div class="container">
+            <h1>Hasil Tangkapan</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nomor Registrasi Kapal</th>                        
+                        <th>Jenis Ikan</th>
+                        <th>Jumlah Tangkapan (Kg)</th>
+                        <th>Metode Penanganan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DKP-12345-WPP-712</td>
+                        <td>Albacore</td>
+                        <td>23402</td>
+                        <td>Pembekuan</td>
+                    </tr>
+                    <tr>
+                        <td>DKP-56789-WPP-718</td>
+                        <td>Cakalang</td>
+                        <td>3330294</td>
+                        <td>Pendinginan</td>                    
+                    </tr> 
+                </tbody>
+            </table>
+          </div> 
+          <div class="container">
+            <h1>Jenis dan Jumlah Alat Tangkap</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nomor Registrasi Kapal</th>                        
+                        <th>Jenis Alat Tangkap</th>
+                        <th>Jumlah Alat Tangkap Dioperasikan (Unit)</th>
+                        <th>Kondisi Alat Tangkap</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DKP-12345-WPP-712</td>
+                        <td>Purse Seine</td>
+                        <td>3</td>
+                        <td>Baru</td>
+                    </tr>
+                    <tr>
+                        <td>DKP-56789-WPP-718</td>
+                        <td>Longline</td>
+                        <td>5</td>
+                        <td>Diperbaiki</td>                    
+                    </tr> 
+                </tbody>
+            </table>
+          </div>
+          <div class="container">
+            <h1>Pelaporan dan Tanda Tangan</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nomor Registrasi Kapal</th>                        
+                        <th>Nama Nahkoda</th>
+                        <th>Status Tanda Tangan Nahkoda</th>
+                        <th>Status Tanda Pengesahan</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DKP-12345-WPP-712</td>
+                        <td>Dodi Suredi</td>
+                        <td><span class="status sudah">Sudah</span></td>
+                        <td><span class="status proses">Proses</span></td>
+                        <td class="action">
+                            <a href="logbook-dodi.html" class="button">
+                                View <i class="fas fa-eye"></i>
+                            </a>
+                        </td>
+                    <tr>
+                        <td>DKP-56789-WPP-718</td>
+                        <td>Suherni</td>
+                        <td><span class="status proses">Proses</span></td>
+                        <td><span class="status belum">Belum Sah</span></td>
+                        <td class="action">
+                            <a href="#" class="button">
+                                View <i class="fas fa-eye"></i>
+                            </a>
+                        </td>                     
+                    </tr> 
+                    <tr>
+                        <td>DKP-56394-WPP-714</td>
+                        <td>Bambang Suroto</td>
+                        <td><span class="status belum">Belum</span></td>
+                        <td><span class="status sudah">Sah</span></td>
+                        <td class="action">
+                            <a href="#" class="button">
+                                View <i class="fas fa-eye"></i>
+                            </a>
+                        </td>                    
+                    </tr> 
+                </tbody>
+            </table>
+          </div>
+        </div>        
+    </div>    
+</body>
+</html>
+
+

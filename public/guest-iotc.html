@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOTC</title> 
+    <link rel="stylesheet" href="css/iotc-2.css">  
+    <link rel="stylesheet" href="css/sidebar.css">    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="img/logo.png" alt="Logo">
+            <h2>TunaLog.</h2>
+        </div>
+        <div class="menu">         
+            <a href="guest-dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a>
+            <a href="guest-pelabuhan.html"><i class="fas fa-building"></i><span>Pelabuhan</span></a>
+            <a href="guest-rfmo.html" class="active"><i class="fas fa-globe"></i><span>RFMO</span></a>               
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="left-section">                
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search" onkeyup="searchFunction()" autocomplete="off">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div> 
+        <div class="rfmo-container">
+          <div class="logo-rfmo">
+              <img alt="IOTC" height="100" src="img/iotc nbg.png" width="100"/>
+          </div>
+          <div class="text">
+              <h1>IOTC</h1>
+              <p>Indian Ocean Tuna Commission</p>
+          </div>
+        </div>
+        <div class="info-cards">                          
+          <div class="card"> 
+              <div class="icon" style="background-color: #ffe6e6;">
+                  <img src="img/icon/cruise.png" alt="Active Vessel">
+              </div>
+              <h3>Active Fishing Vessel</h3>
+              <p>0 Vessels</p>
+          </div>
+          <div class="card">
+              <div class="icon" style="background-color: #feffe6;">
+                  <img src="img/icon/territories.png" alt="Members">
+              </div>
+              <h3>CCP (Members)</h3>
+              <p>29 Countries</p>
+          </div>
+          <div class="card">
+              <div class="icon" style="background-color: #ffe6e6;">
+                  <img src="img/icon/cruise.png" alt="Active Vessel">
+              </div>
+              <h3>IUU Fishing Vessel</h3>
+              <p>23 Vessels</p>
+          </div>
+        </div>
+        <div class="chart-container">
+            <h3>Record of Indonesia IOTC Fishing Vessel</h3>
+            <canvas id="vesselChart"></canvas>
+        </div>
+        <div class="ranking-table">
+          <div class="ranking-header">
+              <h3>Peringkat Hasil Tangkapan</h3>
+              <div class="year-dropdown">
+                <label for="year">Pilih Tahun:</label>
+                <select id="year" name="year" onchange="updateData()">
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023" selected>2023</option>
+                </select>
+              </div>     
+          </div>
+          <table>
+              <thead>
+                  <tr>
+                      <th>Peringkat</th>
+                      <th>Negara</th>
+                      <th>Hasil Tangkapan (kg)</th>
+                  </tr>
+              </thead>
+              <tbody id="data-body">                 
+              </tbody>
+              
+          </table>
+        </div>        
+        <h2>Stock Status</h2>
+        <div class="stock-status">          
+          <div class="status-grid">
+              <div class="status-item">
+                  <img src="img/ikan/T.obesus.png" alt="Bigeye Tuna">
+                  <h3>Thunnus obesus<br><span>Bigeye Tuna</span></h3>
+                  <p class="status-label overfished">Overfished</p>
+                  <p class="category">Tropical Tuna</p>
+              </div>
+              <div class="status-item">
+                  <img src="img/ikan/t.albacares.png" alt="Yellowfin Tuna">
+                  <h3>Thunnus albacares<br><span>Yellowfin Tuna</span></h3>
+                  <p class="status-label overfished">Overfished</p>
+                  <p class="category">Tropical Tuna</p>
+              </div>
+              <div class="status-item">
+                  <img src="img/ikan/T.alalunga.png" alt="Albacore Tuna">
+                  <h3>Thunnus alalunga<br><span>Albacore Tuna</span></h3>
+                  <p class="status-label not-overfished">Not Overfished</p>
+                  <p class="category">Tropical Tuna</p>
+              </div>
+              <div class="status-item">
+                  <img src="img/ikan/k.pelamis.png" alt="Skipjack Tuna">
+                  <h3>Katsuwonus pelamis<br><span>Skipjack Tuna</span></h3>
+                  <p class="status-label overfished">Overfished</p>
+                  <p class="category">Tropical Tuna</p>
+              </div>
+              <div class="status-item">
+                <img src="img/ikan/a.rochei.png" alt="Bullet Tuna">
+                <h3>Auxis rochei<br><span>Bullet Tuna</span></h3>
+                <p class="status-label unknown">Uncertain</p>
+                <p class="category">Neritic Tuna</p>
+              </div>
+              <div class="status-item">
+                <img src="img/ikan/a.thazard.png" alt="Frigate Tuna">
+                <h3>Auxis thazard<br><span>Frigate Tuna</span></h3>
+                <p class="status-label unknown">Uncertain</p>
+                <p class="category">Neritic Tuna</p>
+              </div>
+              <div class="status-item">
+                <img src="img/ikan/e.affinis.png" alt="Kawa Kawa">
+                <h3>Euthynnus affinis<br><span>Kawa Kawa</span></h3>
+                <p class="status-label semi">Not Subject to Overfishing</p>
+                <p class="category">Neritic Tuna</p>
+              </div>
+              <div class="status-item">
+                <img src="img/ikan/t.tonggol.png" alt="Longtail Tuna">
+                <h3>Thunnus tonggol<br><span>Longtail Tuna</span></h3>
+                <p class="status-label overfished">Overfished</p>
+                <p class="category">Neritic Tuna</p>
+              </div>
+          </div>
+        </div>   
+        <p class="data-source">*data ini bersumber dari <span><a href="https://iotc.org/">IOTC</a></span></p>     
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/iotc.js"></script>
+  <script src="js/guest-search-bar.js"></script>
+  <script src="js/sidebar.js"></script>
+</body>
+</html>

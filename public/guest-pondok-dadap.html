@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPP Pondok Dadap</title>
+    <link rel="stylesheet" href="css/ni-zam.css">
+    <link rel="stylesheet" href="css/sidebar.css">        
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">      
+         
+</head>
+
+<body> 
+    <div class="sidebar">
+        <div class="logo">
+            <img src="img/logo.png" alt="Logo">
+            <h2>TunaLog.</h2>
+        </div>
+        <div class="menu">         
+            <a href="guest-dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a>
+            <a href="guest-pelabuhan.html"class="active"><i class="fas fa-building"></i><span>Pelabuhan</span></a>
+            <a href="guest-rfmo.html" ><i class="fas fa-globe"></i><span>RFMO</span></a>               
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="left-section">                
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search" onkeyup="searchFunction()" autocomplete="off">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>             
+        <div class="container">
+          <h2>PPP Pondok Dadap</h2>
+      
+          <div class="table-section">
+            <h3>Produksi 2018-2023</h3>
+            <table id="productionTable" class="display">
+                <thead>
+                    <tr>
+                        <th>Tahun</th>
+                        <th>Nama Jenis Ikan</th>
+                        <th>Nama Spesies</th>
+                        <th>Produksi (Kg)</th>
+                        <th>Trip Days</th>
+                    </tr>
+                </thead>
+            </table>
+          </div>
+          <div class="table-section">
+                <h3>Alat Tangkap 2018-2023</h3>
+                <table id="APITable" class="display">
+                    <thead>
+                        <tr>
+                            <th>Tahun</th>
+                            <th>Alat Tangkap</th>                           
+                            <th>Produksi (ton)</th>                           
+                        </tr>
+                    </thead>
+                </table>
+          </div>
+            
+        </div>        
+        <div class="chart-container">
+          <div class="chart-item">
+              <div class="chart-title">Hasil Tangkapan per Tahun</div>              
+              <canvas id="chartLine"></canvas>
+          </div>
+          <div class="chart-item">
+              <div class="chart-title">Hasil Tangkapan per API (Alat Penangkapan Ikan) </div>              
+              <canvas id="chartBar"></canvas>
+          </div>        
+        </div>
+        <div class="chart-container-clustered">
+          <div class="chart-title">Hasil Tangkapan per Spesies Ikan</div>              
+          <canvas id="clusteredChart" width="400" height="150"></canvas>
+        </div>
+        <div class="chart-wrapper">
+          <div class="chart-container-cpue">
+              <div class="chart-header">
+                  <h3>Catch per Unit Effort (CPUE) 2018-2022</h3>
+              </div>
+              <canvas id="cpueRegressionChart"></canvas>
+          </div>
+          <div class="chart-container-cpue">
+              <div class="chart-header">
+                  <h3>Maximum Sustainable Yield 2018-2022</h3>
+              </div>
+              <canvas id="msyChart"></canvas>
+          </div>
+        </div>
+         <div class="parent-container">
+            <div class="info-card">
+              <div class="card">
+                <i><span class="lowercase-a">c</span></i>
+                <h3>C aktual</h3>
+                <p>674.467 Kg/tahun</p>
+              </div>
+              <div class="card">
+                <i><span class="lowercase-a">f</span></i>
+                <h3>f aktual</h3>
+                <p>245 trip days</p>
+              </div>                                                      
+              <div class="card">
+                <i><span class="lowercase-a">a</span></i>
+                <h3>Koefisien a</h3>
+                <p>7,9492</p>
+              </div>
+              <div class="card">
+                <i><span class="lowercase-a">b</span></i>
+                <h3>Koefisien b</h3>
+                <p>-0,0000598</p>
+              </div>
+              <div class="card">
+                <i class="fas fa-anchor "></i>
+                <h3>Sustainable Effort</h3>
+                <p>16.710 trip days</p>
+              </div>
+              <div class="card">
+                <i class="fas fa-fish"></i>
+                <h3>Sustainable Catch</h3>
+                <p>17.417.141 Kg/Tahun</p>
+              </div>
+            </div>
+        </div>
+       
+        <div class="add-container">
+            <div class="add-header">
+              <i class="fas fa-bullhorn"></i>
+              <h1>Hasil Model Produksi Surplus</h1>
+            </div>
+            <div class="content">
+                Hasil analisis menunjukan bahwa model Fox merupakan model yang paling sesuai untuk diterapkan. Berdasarkan nilai C MSY dan f MSY yang 
+                didapatkan dari model Fox dibandingkan dengan C aktual dan f aktual lebih tinggi, oleh karena itu ikan yang didaratkan tergolong <strong><em> Underfishing</em></strong>. 
+                Perlu dilakukan strategi pengelolaan berupa penambahan hasil tangkapan dan trip yang tidak melebihi nilai MSY dan fMSY.
+            </div>
+        </div>
+          
+                              
+    </div>
+    
+      
+      
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script> 
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>  
+    <script src="js/pondok-dadap.js"></script>   
+    <script src="js/guest-search-bar.js"></script>
+    <script src="js/sidebar.js"></script>
+</body>
+</html>

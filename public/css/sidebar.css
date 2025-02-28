@@ -1,0 +1,53 @@
+.toggle-btn {
+  background: none; 
+  border: none; 
+  outline: none; 
+  cursor: pointer; 
+}
+
+.toggle-btn i {
+  font-size: 24px; 
+  color: #333; 
+  transition: transform 0.3s; 
+}
+
+.toggle-btn:hover i {
+  color: #007bff; /* Mengubah warna ikon saat hover */
+   /* Efek rotasi pada ikon saat hover */
+}
+
+.sidebar.collapsed .menu a {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  white-space: nowrap;
+}
+.sidebar.collapsed .menu a i {
+  margin-right: 0; /* Posisikan ikon di tengah */
+}
+.sidebar.collapsed .menu a span {
+  display: none;
+}
+.sidebar.collapsed h2, .sidebar.collapsed img {
+  display: none;
+}
+.sidebar {
+  transition: width 0.3s;
+  width: 250px;
+}
+.sidebar.collapsed {
+  width: 60px;
+}
+.sidebar.collapsed .logo {
+  display: none; 
+}
+.fas.fa-angle-left {  
+  color: #333; 
+  border: none;
+  outline: none;
+  transition: transform 0.3s; 
+}
+
+.fas.fa-angle-left:hover {
+  color: #007bff; /* Mengubah warna saat hover */  
+}

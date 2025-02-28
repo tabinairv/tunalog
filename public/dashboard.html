@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/dash-board.css"> 
+    <link rel="stylesheet" href="css/sidebar.css">      
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <style>
+        #map {
+            height: 500px;  
+            width: 90%;
+            margin: auto;
+            margin-bottom: 50px;
+        }
+    </style>  
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="img/logo.png" alt="Logo">
+            <h2>TunaLog.</h2>
+        </div>        
+        <div class="menu">         
+            <a href="dashboard.html"class="active"><i class="fas fa-home"></i><span>Dashboard</span></a>
+            <a href="pelabuhan.html"><i class="fas fa-building"></i><span data-translate="port">Pelabuhan</span></a>
+            <a href="logbook.html"><i class="fas fa-clipboard-check"></i><span data-translate="report">Report</span></a>           
+            <a href="rfmo.html" ><i class="fas fa-globe"></i><span>RFMO</span></a>               
+            <a href="realtime.html"><i class="fas fa-business-time"></i><span>Real time</span></a>       
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="user-info" id="userInfo"></div>
+        <div class="header">
+            <div class="left-section">                
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search" onkeyup="searchFunction()" autocomplete="off">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div id="search-results" class="search-results"></div>
+            </div>
+            <div class="user-icons">   
+                <div class="language-selector">
+                    <img src="img/uk-flag.png" alt="English" onclick="setLanguage('en')">
+                    <img src="img/id-flag.png" alt="Indonesian" onclick="setLanguage('id')">
+                </div>
+
+                <div class="user-profile">
+                    <img src="img/me.png" alt="User">
+                    <span>Tabina Irviana</span>
+                    <div class="dropdown-menu">
+                        <a href="my-profile.html">My Profile</a>
+                        <button id="logoutButton">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="dashboard">
+            <h2 data-translate="dashboard">Beranda</h2> 
+            <div class="tct-banner">
+                <div class="text-section">
+                    <h1>Sustaining Our Oceans,<br> Empowering Fisheries</h1>
+                    <a href="find-out.html" class="find-button" data-translate="find-out">Find Out More</a>
+                </div>                
+            </div>            
+            <div class="info-cards">                                                                      
+                <div class="card">
+                    <div class="icon" style="background-color: #ffe6e6;">
+                        <img src="img/icon/cruise.png" alt="Active Vessel">
+                    </div>
+                    <h3 data-translate="total-active-vessel">Total Active Vessel</h3>
+                    <p>1.992 Vessels</p>
+                </div>
+                <div class="card">
+                    <div class="icon" style="background-color: #e6fffd;">
+                        <img src="img/icon/cruise.png" alt="Active Vessel">
+                    </div>
+                    <h3 data-translate="total-IUU-vessel">Total IUU Fishing Vessel</h3>
+                    <p>28 Vessels</p>
+                </div>
+                <div class="card">
+                    <div class="icon" style="background-color: #e9ffe6;">
+                        <img src="img/icon/fishing-boat.png" alt="Active Vessel">
+                    </div>
+                    <h3 data-translate="total-API">Total API</h3>
+                    <p>41 API</p>
+                </div>
+            </div>           
+            <div class="chart-container">
+                <div class="chart-item">
+                    <div class="chart-title" data-translate="TCT-production">Produksi TCT di Samudra Hindia</div>
+                    <canvas id="barChart"></canvas>
+                </div>
+                <div class="chart-item">
+                    <div class="chart-title" data-translate="gear-use">Penggunaan Alat Tangkap</div>
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+            <div class="info-cards">  
+                <h2>Regional Fisheries Management Organization</h2>               
+                <a href="https://iotc.org/" target="_blank" class="no-style-link">
+                    <div class="card">
+                        <div class="icon">
+                            <img src="img/iotc.jpg" alt="IOTC">
+                        </div>            
+                        <h3>IOTC</h3>
+                        <p>Indian Ocean Tuna Commission</p>
+                    </div>  
+                </a>                
+                <a href="https://www.wcpfc.int/" target="_blank" class="no-style-link">
+                    <div class="card">
+                        <div class="icon">
+                            <img src="img/wcpfc.jpg" alt="WCPFC">
+                        </div>
+                        <h3>WCPFC</h3>
+                        <p>Western & Central Pacific Fisheries Commission</p>
+                    </div> 
+                </a>
+                
+                <a href="https://www.ccsbt.org/en" target="_blank" class="no-style-link">
+                    <div class="card">
+                        <div class="icon">
+                            <img src="img/ccsbt.png" alt="CCSBT">
+                        </div>
+                        <h3>CCSBT</h3>
+                        <p>Commission for the Conservation of Southern Bluefin Tuna</p>
+                    </div>
+                </a>
+            </div>                        
+            <h1 style="text-align: center; font-size: 30px; margin-bottom: 10px;" data-translate="port-landing">Pelabuhan Pendaratan TCT</h1>
+            <section class="pelabuhan-section">                
+                <div class="scroll-container">                    
+                    <div class="pelabuhan-item">
+                        <a href="https://pipp.kkp.go.id/profil-pelabuhan/detail/eyJpdiI6IlRFT1FxTFdWRldPSlh5bG83K2IzWFE9PSIsInZhbHVlIjoiSnBCTTRBMFRpY3dldmRNa0dUT1BUQT09IiwibWFjIjoiZGNmMWQxYzQzYzIwY2NhYTAyZjEzYWM4ZjNiZTBiNGQxYTk4ZjEzZDg3YTkwNDZjYTAzZWY2ZjVmMjg4MGUxYiIsInRhZyI6IiJ9" target="_blank">
+                            <img src="img/nizam.png" alt="Nizam" class="pelabuhan-icon">   
+                        </a>                        
+                        <p>PPS Nizam Zachman</p>
+                    </div>
+                    <div class="pelabuhan-item">
+                        <a href="https://pipp.kkp.go.id/profil-pelabuhan/detail/eyJpdiI6InVtdUd2UmNYaEwwcEJnUEpXN3ZLbHc9PSIsInZhbHVlIjoiV0xoL2JkSmtHWmt3WjRVVnM3SUYzZz09IiwibWFjIjoiY2VjNTQ5MWIyNWU0YjdiYTZlYWYwMjdkMGQwZjE0ZDUyYzc4ZDg5MDBhNWE1MTA4NTk4NjI5MmZkYzJmYmQzNCIsInRhZyI6IiJ9" target="_blank">
+                            <img src="img/benoa.jpg" alt="Benoa" class="pelabuhan-icon">
+                        </a>                            
+                        <p>PU Benoa</p>
+                    </div>
+                    <div class="pelabuhan-item">
+                        <a href="https://pipp.kkp.go.id/profil-pelabuhan/detail/eyJpdiI6IjdyVFovdzkyVDFEQVgydXZ4YVZTMHc9PSIsInZhbHVlIjoicGZ6UFMvbHU4V2N0T1RRM2ttWVgvQT09IiwibWFjIjoiOTUyMzZhZjI2M2IwZmNjMWU3N2FjY2NiOTA4NTliMWI0YmNiYTI5YjJiY2JjOTYxN2RiOWRkNGE4YzNhMTU1YSIsInRhZyI6IiJ9" target="_blank">
+                            <img src="img/palabuhan.jpg" alt="Palabuhanratu" class="pelabuhan-icon">
+                        </a>                            
+                        <p>PPN Palabuhanratu</p>
+                    </div>
+                    <div class="pelabuhan-item">
+                        <a href="https://pipp.kkp.go.id/profil-pelabuhan/detail/eyJpdiI6InU0QUZmNm5zWG1WQWVCak1mdFBxVVE9PSIsInZhbHVlIjoiW1BFL1VBWDFkN0FPQ3p0bDFpcXlXZz09IiwibWFjIjoiMDdjOGU4NDBiOTNkOTFkY2ExZGE3YjJmN2JkNzE0YTg1ZDJhZDFhN2Y5YjBjNWUzMjI1YzIzZTg2N2YzNWE2NiIsInRhZyI6IiJ9" target="_blank">
+                            <img src="img/cilacap.jpg" alt="cilacap" class="pelabuhan-icon">
+                        </a>                            
+                        <p>PPS Cilacap</p>
+                    </div>
+                    <div class="pelabuhan-item">
+                        <a href="https://pipp.kkp.go.id/profil-pelabuhan/detail/eyJpdiI6IjJpY3hDQnFkZ1BHQkZZc2VYU3NqNHc9PSIsInZhbHVlIjoiV0xoL2JkSmtHWmt3WjRVVnM3SUYzZz09IiwibWFjIjoiYzRlYTI3NDI0MTYzMWU0ZTQzYTM1M2ZmNjA3ZmYwMjFlNDM1MThhMjVkYzcwYzQ3MTllODQ1ODUwNTlmYTVjNyIsInRhZyI6IiJ9" target="_blank">
+                              <img src="img/prigi.jpg" alt="prigi" class="pelabuhan-icon">  
+                        </a>                            
+                        <p>PPN Prigi</p>
+                    </div>
+                    <div class="pelabuhan-item">
+                        <a href="https://pipp.kkp.go.id/profil-pelabuhan/detail/eyJpdiI6IlljY3Y3d1BkUGRxR2VESXkwVnV0MHc9PSIsInZhbHVlIjoiQUl4cG5uOEo1ckFFdFZ5TGRjNUpEdz09IiwibWFjIjoiOTZiMzZmN2U5MTZjOThhZjI3MGFiNzE1YzIxYjMzNDg1NjlmNTUyN2Q2ODE2ZWMxOGVjOTdiNjQ5OTBlZjM1NCIsInRhZyI6IiJ9"target="_blank">
+                                <img src="img/pd.jpg" alt="pd" class="pelabuhan-icon">
+                        </a>                            
+                        <p>PPP Pondok Dadap</p>
+                    </div>    
+                    <div class="pelabuhan-item">
+                        <a href="https://pipp.kkp.go.id/profil-pelabuhan/detail/eyJpdiI6IjVhaVIzVHBxWHZMSTAydEJOZ0x6d0E9PSIsInZhbHVlIjoiNTBFL1VBWDFkN0FPQ3p0bDFpcXlXZz09IiwibWFjIjoiYTE5ZTYyNjA5YzExYmFiYzM1YzkxYWY5MmRiMDQ5NGU1Yzg4ZTFlZGIyYjhkNjc2ZTQzMGZlMTJhZDQ0ZDhkMSIsInRhZyI6IiJ9" target="_blank">
+                                <img src="img/labuhan.jpg" alt="labuhan" class="pelabuhan-icon">
+                        </a>                            
+                        <p>PPP Labuhan Lombok</p>
+                    </div>
+                </div>                
+            </section>
+            <div class="map">                      
+                <div class="map-box" id="map">                      
+                </div>                    
+            </div>  
+            <section class="commitment-section">
+                <h2 data-translate="blue-economy-regulation">Blue Economy Regulation</h2>
+                <p data-translate="blue-economy-text">5 Kebijakan Ekonomi Biru - Agenda Prioritas Kementerian Kelautan dan Perikanan RI</p>
+                <div class="bluecon-grid">
+                    <div class="bluecon-item">
+                        <a href="https://kkp.go.id/kebijakan/memperluas-kawasan-konservasi-laut.html" target="_blank">
+                         <img src="img/conservation.jpg" alt="Conservation" class="bluecon-icon">   
+                        </a>                        
+                        <p data-translate="conservation">Memperluas Kawasan Konservasi Laut</p>
+                    </div>
+                    <div class="bluecon-item">
+                        <a href="https://kkp.go.id/kebijakan/penangkapan-ikan-terukur-berbasis-kuota.html" target="_blank">
+                            <img src="img/fishing.jpeg" alt="Kuota Fishing" class="bluecon-icon">
+                        </a>                        
+                        <p data-translate="PIT">Penangkapan Ikan Terukur Berbasis Kuota</p>
+                    </div>
+                    <div class="bluecon-item">
+                        <a href="https://kkp.go.id/kebijakan/mengembangkan-budidaya-air-laut-tawar-payau-yang-berkelanjutan.html" target="_blank">
+                            <img src="img/budidaya.jpg" alt="Budidaya" class="bluecon-icon">
+                        </a>                        
+                        <p data-translate="marine-aquaculture">Mengembangkan Budidaya Air Laut, Payau, dan Berkelanjutan</p>
+                    </div>
+                    <div class="bluecon-item">
+                        <a href="https://kkp.go.id/kebijakan/pengelolaan-dan-pengawasan-pesisir-dan-pulau-pulau-kecil.html" target="_blank">
+                            <img src="img/pulau.jpg" alt="Small Island" class="bluecon-icon">
+                        </a>                        
+                        <p data-translate="coastal-management">Pengelolaan dan Pengawasan Pesisir dan Pulau-Pulau Kecil</p>
+                    </div>
+                    <div class="bluecon-item">
+                        <a href="https://kkp.go.id/kebijakan/penanganan-sampah-plastik-di-laut-melalui-gerakan-partisipasi-nelayan-atau-bulan-cinta-laut-bcl.html" target="_blank">
+                            <img src="img/plastik.jpg" alt="Plastic" class="bluecon-icon">
+                        </a>                        
+                        <p data-translate="plastic-waste">Penanganan Sampah Plastik di Laut</p>
+                    </div>                    
+                </div>                
+            </section>
+            
+        </div> 
+        <div id="errorMessage" style="color: red;"></div>       
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/search-bar.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/dashboard-map.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/log-out.js"></script>
+    <script src="js/translation.js"></script>
+</body>
+</html>

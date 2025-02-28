@@ -1,0 +1,266 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+  font-family: "Poppins", sans-serif;
+}
+body {  
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: white;
+  overflow: hidden; /* Ini akan menghindari body ikut scrolling */
+}
+body, html {
+  height: 100%;
+}
+.main-content {
+  margin-left: 250px; /* Memberi ruang untuk sidebar */
+  flex: 1;
+  background-color: #f0f0f0;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto; /* Membuat konten di bagian tengah bisa di-scroll */
+}
+/*sidebar*/
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  background-color: #fff;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  transition: width 0.3s ease;
+  overflow-y: auto;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.logo img {
+  width: 50px;
+  margin-right: 10px;
+}
+.logo h2 {
+  font-size: 30px;
+  color: #06085c;
+  margin-bottom: 0px;
+}
+.menu p {
+  margin: 40px 0;
+  font-size: 12px;
+  color: #777;
+  font-weight: bold;
+  text-transform: uppercase;
+
+}
+.menu a {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  text-decoration: none;
+  font-size: 16px;
+  color: #333;
+  transition: 0.5s;
+  margin-bottom: 20px;
+}
+.menu a i {
+  margin-right: 10px;
+}
+.menu a.active, .menu a:hover {
+  background-color: #dfe0ff;
+  margin-top: 10px ;
+  color: #06085c;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+/*Header*/ 
+.header {
+  display:flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 83.7%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+.left-section {
+  display: flex;
+  align-items: center;
+}
+.menu-toggle {
+  cursor: pointer;
+}
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  padding: 8px 15px;
+  width: 250px;
+  margin-left: 20px;
+}
+
+.search-bar input {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 5px 10px;
+  width: 100%;
+  font-size: 14px;
+}
+.search-bar i {
+  color: #666;
+  cursor: pointer;
+}
+.user-icons {
+  display: flex;
+  align-items: center;
+}
+.user-icons i, .user-profile img {
+  margin-left: 15px;
+  cursor: pointer;
+}
+/* Removed unused dropdown styles */
+.user-profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.user-profile:hover {
+  background-color: #f5f5f5;
+}
+.user-profile img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+.user-profile span {
+  font-size: 14px;
+  color: #333;
+}
+.user-profile .dropdown-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 200px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: none;
+}
+.user-profile .dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+.user-profile .dropdown-menu a:hover {
+  background-color: #f5f5f5;
+}
+.user-profile .dropdown-menu a i {
+  margin-right: 10px;
+}
+.user-profile:hover .dropdown-menu {
+  display: block;
+}
+
+
+/*admin*/
+.customer-table {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 90px;
+  margin-bottom: 50px;
+  font-family: 'Arial', sans-serif;
+  background-color: white;
+  border-radius: 10px;
+}
+.top-section { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  padding-bottom: 0px;
+}
+/* Removed duplicate search-bar styles */
+
+.add-customer-btn {
+  background-color: #dfe0ff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #06085c;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-customer-btn:hover {
+  background-color: #c2c3df;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 20px;
+}
+
+thead {
+  background-color: #f7f7f7;
+}
+
+thead th {
+  padding: 15px;
+  text-align: left;
+  font-size: 14px;
+  color: #555;
+}
+
+tbody tr {
+  border-bottom: 1px solid #eee;
+  
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+tbody td {
+  padding: 15px;
+  font-size: 14px;
+  color: #333;
+}
+
+tbody td img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}

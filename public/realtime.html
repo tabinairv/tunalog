@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Time Data</title>
+    <link rel="stylesheet" href="css/realtime.css">
+    <link rel="stylesheet" href="css/sidebar.css">         
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="img/logo.png" alt="Logo">
+            <h2>TunaLog.</h2>
+        </div>
+        <div class="menu">         
+            <a href="dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a>
+            <a href="pelabuhan.html"><i class="fas fa-building"></i><span>Pelabuhan</span></a>
+            <a href="logbook.html"><i class="fas fa-clipboard-check"></i><span>Report</span></a>           
+            <a href="rfmo.html" ><i class="fas fa-globe"></i><span>RFMO</span></a>               
+            <a href="realtime.html"class="active"><i class="fas fa-business-time"></i><span>Real time</span></a>       
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="left-section">                
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search" onkeyup="searchFunction()" autocomplete="off">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div id="search-results" class="search-results"></div>
+            </div>
+            <div class="user-icons"> 
+                <div class="language-selector">
+                    <img src="img/uk-flag.png" alt="English" onclick="setLanguage('en')">
+                    <img src="img/id-flag.png" alt="Indonesian" onclick="setLanguage('id')">
+                </div>               
+                <div class="user-profile">
+                    <img src="img/me.png" alt="User">
+                    <span>Tabina Irviana</span>
+                    <div class="dropdown-menu">
+                        <a href="my-profile.html">My Profile</a>
+                        <button id="logoutButton">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="dashboard">
+            <h2>Realtime Data</h2> 
+            <div class="container-realtime">            
+              <h1>List of Logbook Entry</h1>
+              <div class="button-container">
+                <button id="downloadCsv">CSV</button>                
+              </div>
+
+              <div class="table-scroll">
+                  <table> 
+                      <thead>
+                          <tr>
+                              <th data-translate="depart-date">Tanggal Keberangkatan </th>
+                              <th data-translate="arrival-date">Tanggal Kedatangan</th>
+                              <th data-translate="depart-port">Pelabuhan Keberangkatan</th>
+                              <th data-translate="arrival-port">Pelabuhan Kedatangan</th>
+                              <th data-translate="ship-name">Nama Kapal</th>
+                              <th data-translate="owner-name">Nama Pemilik</th>
+                              <th data-translate="sipi-number">Nomor Perizinan Berusaha</th>
+                              <th data-translate="spkp">Transmiter SPKP</th>
+                              <th data-translate="trip">Trip Ke-</th>
+                              <th data-translate="jenis-api">Jenis API</th>
+                              <th data-translate="gt">GT</th>
+                              <th data-translate="panjang-kapal">Panjang Kapal</th>
+                              <th data-translate="pengenal-kapal">Tanda Pengenal Kapal</th>
+                              <th data-translate="awak-wni">Awak Kapal WNI</th>  
+                              <th data-translate="awak-wna">Awak Kapal WNA</th>
+                              <th data-translate="wpp">WPP NRI</th>
+                              <th data-translate="dpi">DPI</th>
+                              <th data-translate="lintang">Lintang</th>
+                              <th data-translate="bujur">Bujur</th>
+                              <th data-translate="fish-type">Jenis Ikan</th>
+                              <th data-translate="jumlah-ekor">Jumlah Ekor</th>
+                              <th data-translate="weight">Berat</th>                                
+                          </tr>
+                      </thead>
+                      <tbody id="reportData"></tbody>
+                  </table>
+              </div>
+            </div>
+                                
+
+          <script src="js/realtime.js"></script> 
+
+        </div>        
+    </div>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="js/search-bar.js"></script>
+    <script src="js/sidebar.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+        const tableBody = document.getElementById('reportData');
+
+        async function fetchLogbookData() {
+            tableBody.innerHTML = '<tr><td colspan="22">Loading...</td></tr>';
+            try {
+                const response = await fetch('http://localhost:3000/logbooks', {
+                    method: 'GET',
+                    credentials: 'include',
+                }); 
+                if (!response.ok) {
+                    throw new Error('Gagal mengambil data');
+            }
+            const data = await response.json();            
+            tableBody.innerHTML = ''; 
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td>${item.tanggalKeberangkatan || '-'}</td>
+                <td>${item.tanggalKedatangan || '-'}</td>
+                <td>${item.pelabuhanKeberangkatan || '-'}</td>
+                <td>${item.pelabuhanKedatangan || '-'}</td>
+                <td>${item.namaKapal || '-'}</td>
+                <td>${item.namaPemilik || '-'}</td>
+                <td>${item.nomorPerizinan || '-'}</td>
+                <td>${item.transmiterSPKP || '-'}</td>
+                <td>${item.tripKe || '-'}</td>
+                <td>${item.jenisAPI || '-'}</td>
+                <td>${item.grossTonage || '-'}</td>
+                <td>${item.panjangKapal || '-'}</td>
+                <td>${item.tandaPengenalKapal || '-'}</td>
+                <td>${item.awakKapalWNI || '-'}</td>
+                <td>${item.awakKapalWNA || '-'}</td>
+                <td>${item.wppnri || '-'}</td>
+                <td>${item.daerahPenangkapanIkan || '-'}</td>
+                <td>${item.lintang || '-'}</td>
+                <td>${item.bujur || '-'}</td>
+                <td>${item.jenisIkan || '-'}</td>
+                <td>${item.jumlahEkor || '-'}</td>
+                <td>${item.berat || '-'}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+            } catch (error) {
+            console.error('Error:', error);
+            tableBody.innerHTML = '<tr><td colspan="22" style="color: red;">Gagal memuat data</td></tr>';
+            }
+        }
+
+        fetchLogbookData(); // Panggil fungsi saat halaman dimuat
+        });
+
+        //csv 
+        document.getElementById('downloadCsv').addEventListener('click', () => {
+        const table = document.querySelector("table");
+        let csvContent = "data:text/csv;charset=utf-8,";
+        
+        // Mengambil header tabel
+        const headers = Array.from(table.querySelectorAll("th")).map(th => th.innerText);
+        csvContent += headers.join(",") + "\n";
+
+        // Mengambil isi tabel
+        const rows = table.querySelectorAll("tbody tr");
+        rows.forEach(row => {
+            const cells = Array.from(row.querySelectorAll("td")).map(td => td.innerText);
+            csvContent += cells.join(",") + "\n";
+        });
+
+        // Membuat dan mengunduh file CSV
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "logbook.csv");
+        link.click();
+        });
+    </script>
+    <script src="js/log-out.js"></script>
+    <script src="js/translation.js"></script>
+</body>
+</html>
+
+

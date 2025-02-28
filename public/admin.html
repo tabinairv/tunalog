@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="css/admin.css">  
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="img/logo.png" alt="Logo">
+            <h2>TunaLog.</h2>
+        </div>
+        <div class="menu">
+            <a href="#">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="#"><i class="fas fa-check-circle"></i> Data</a>
+            
+            <!-- Menu Pelabuhan dengan Dropdown -->
+            <a href="#" class="dropdown-toggle"><i class="fas fa-building"></i> Pelabuhan</a>
+            <div class="dropdown-menu"> 
+                <a href="#" class="active"><i class="fas fa-minus"></i>PPS Nizam Zachman</a>
+                <a href="#"><i class="fas fa-minus"></i>PPS Cilacap</a>
+                <a href="#"><i class="fas fa-minus"></i>PPN Palabuhanratu</a>
+                <a href="#"><i class="fas fa-minus"></i>PPN Prigi</a>
+                <a href="#"><i class="fas fa-minus"></i>PPP Labuhan Lombok</a>
+                <a href="#"><i class="fas fa-minus"></i>PU Benoa</a>
+                <a href="#"><i class="fas fa-minus"></i>PPN Pondok Dadap</a>
+            </div>
+    
+            <a href="#"><i class="fas fa-digital-tachograph"></i> RFMO</a>
+            <a href="#"><i class="fas fa-phone"></i> FAQ & Help</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="left-section">                
+                <div class="search-bar">
+                    <input type="text" placeholder="search">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div> 
+        
+            <div class="user-icons">            
+                <!-- Bagian User Profile dengan Dropdown -->
+                <div class="user-profile">
+                    <img src="img/me.png" alt="User">
+                    <span>Tabina Irviana</span>
+                    
+                    <!-- Dropdown menu -->
+                    <div class="dropdown-menu">
+                        <a href="#"><i class="fas fa-people"></i>My Profile</a>                    
+                        <a href="#"><i class="fas fa-sign-out"></i>Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="customer-table">
+          <div class="top-section">
+            <div class="search-bar">
+              <input type="text" placeholder="Search">              
+            </div>
+            <button class="add-customer-btn">+ Add New Admin</button>
+          </div>                  
+          <table>
+              <thead>
+                  <tr>
+                      <th>Customer Name</th>
+                      <th>Email</th>
+                      <th>Phone</th>                      
+                      <th>Admin Since</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td><img src="img/man.jpg" alt="profile"/> Putuh Suadela</td>
+                      <td>acluffa@bizjournals.com</td>
+                      <td>1071727419</td>                    
+                      <td>21/05/2023 7:25:10 PM</td>
+                  </tr>
+                  <tr>
+                      <td><img src="img/me.png" alt="profile"/> Tabina Irviana Fakhirah</td>
+                      <td>tabinairv@gmail.com</td>
+                      <td>9744387564</td>                      
+                      <td>15/11/2022 10:21:44 PM</td>
+                  </tr>
+                  <tr>
+                      <td><img src="img/woman.jpg" alt="profile"/> Saraswati</td>
+                      <td>rrodwellc@china.com.cn</td>
+                      <td>1759832847</td>                      
+                      <td>05/04/2023 3:14:25 AM</td>
+                  </tr>                  
+              </tbody>
+          </table>
+        </div>              
+
+    </div>
+    
+
+   
+</body>
+</html>

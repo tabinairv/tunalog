@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('https://asset-a.grid.id/crop/0x0:0x0/x/photo/2022/12/31/fakta-unik-tentang-samudra-hindi-20221231084429.jpg');
+  background-size: cover;
+}
+
+.container {
+  display: flex;
+  width: 900px;
+  height: 500px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.image-section {
+  flex: 1;
+  background-image: url('https://media.istockphoto.com/id/95662678/photo/bluefin-tuna-in-net.jpg?s=612x612&w=0&k=20&c=43fyhRmOcQpHS1BkKm1UwwjM7_HvgWDXw158ZpV3QJw='); /* You should replace this with the image URL */
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.image-section h1 {
+  font-size: 36px;
+  line-height: 1.5;
+}
+
+.login-section {
+  flex: 1;
+  background-color: white;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+form h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.options a {
+  text-decoration: none;
+  color: #007BFF;
+  font-size: 12px;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #06085c;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.login-btn:hover {
+  background-color: #28a745;
+}
+
+p {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #777;
+}

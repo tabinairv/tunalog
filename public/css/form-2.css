@@ -1,0 +1,249 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+  font-family: "Poppins", sans-serif;
+}
+body, html {  
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: white;
+  overflow: hidden; /* Ini akan menghindari body ikut scrolling */
+}
+.main-content {
+  margin-left: 250px; /* Memberi ruang untuk sidebar */
+  flex: 1;
+  background-color: #f0f0f0;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto; /* Membuat konten di bagian tengah bisa di-scroll */
+}
+
+/*sidebar*/
+.sidebar {
+  width: 250px; /* Adjusted width to make it smaller */
+  height: calc(100vh - 80px); 
+  position: fixed;
+  background-color: #fff;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;  
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.logo img {
+  width: 50px;
+  margin-right: 10px;
+}
+.logo h2 {
+  font-size: 30px;
+  color: #06085c;
+  margin-bottom: 0px;
+}
+.menu p {
+  margin: 40px 0;
+  font-size: 12px; /* Restored original font size */
+  color: #777;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.menu a {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  text-decoration: none;
+  font-size: 16px; /* Restored original font size */
+  color: #333;
+  transition: 0.5s;
+  margin-bottom: 20px;
+}
+.menu a i {
+  margin-right: 10px;
+}
+.menu a.active, .menu a:hover {
+  background-color: #dfe0ff;
+  margin-top: 10px ;
+  color: #06085c;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+/*form*/
+.form-container {
+  width: 100%;
+  max-width: 1200px; /* Adjust this if needed */
+  margin: 0 auto;
+  background-color: white;
+  padding: 10px;
+  padding-bottom: 60px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  position: relative;  
+  transition: width 0.3s;
+}
+.form-container h2 {
+  font-size: 25px;
+  color: #06085c;
+  margin-bottom: 20px;
+  text-align: center; /* Centers the heading */
+}
+.container {
+  width: 100%;
+  padding: 16px;
+}
+.container h2 {
+  font-size: 20px;
+  color: #06085c;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns by default */
+  gap: 10px;
+  width: 100%;
+}
+.grid div {
+  display: flex;
+  flex-direction: column;
+}
+.grid label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.grid input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.grid select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+@media (max-width: 1400px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for medium screens */
+  }
+}
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for smaller screens */
+  }
+}
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+  }
+}
+@media (max-width: 500px) {
+  .grid {
+    grid-template-columns: 1fr; /* 1 column for mobile */
+  }
+}
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: black;
+}
+.required {
+  color: red; 
+}
+.required:hover::after {
+  content: " Wajib"; 
+  font-size: 0.9em;
+  font-weight: normal;
+  color: black; 
+}
+
+input {
+  width: 100%;
+  border: 1px solid #76777b;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+/*button*/
+
+.button-container {
+  display: flex;
+  justify-content: flex-start; 
+  gap: 10px; 
+  margin-left: 10px;
+}
+button {
+  
+  padding: 10px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.submit-btn{
+  background-color: green;
+  
+}
+.submit-btn:hover {
+  background-color: rgb(9, 105, 9);
+}
+.delete-btn {
+  background-color: red;
+}
+.delete-btn:hover {
+  background-color: rgb(228, 9, 9);
+}
+
+/*divider*/
+.divider {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+/*bottom container*/
+.bottom-container {
+  display: flex; /* Enables side-by-side layout */
+  justify-content: space-between; /* Adjust spacing */
+  align-items: flex-start; /* Aligns items to the top */
+  gap: 20px; /* Adds space between the two divs */
+  width: 100%;
+  padding: 20px;
+}
+.grid-bottom {
+  flex: 1; /* Makes it share space equally */
+  min-width: 50%; 
+  height: 200px; /* Match the height with the map */
+}
+.komposisi-container {
+  flex: 1;
+  min-width: none;
+  height: auto;
+}
+.komposisi-grid {
+  margin-top: 10px;
+}
+
+/*map*/
+#map-container {
+  width: 100%;
+  height: 200px; /* Ensure it's visible */
+  border: 1px solid #ccc; /* Optional: Just for visibility */
+}

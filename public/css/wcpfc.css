@@ -1,0 +1,466 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+  font-family: "Poppins", sans-serif; 
+}
+body {  
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: white;
+  overflow: hidden; /* Ini akan menghindari body ikut scrolling */
+}
+body, html {
+  height: 100%;
+}
+.main-content {
+  margin-left: 250px; /* Memberi ruang untuk sidebar */
+  flex: 1;
+  background-color: #f0f0f0;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto; /* Membuat konten di bagian tengah bisa di-scroll */
+}
+.main-content h2 {
+  font-size: 26px;
+  color: #234e8d;
+  margin-bottom: 10px; 
+  margin-top: 20px;
+}
+.main-content h3 {
+  font-size: 20px;
+  color: black;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+/*sidebar*/
+.sidebar {
+  width: 250px;
+  height: calc(100vh - 80px); 
+  position: fixed;
+  background-color: #fff;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;  
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.logo img {
+  width: 50px;
+  margin-right: 10px;
+}
+.logo h2 {
+  font-size: 30px;
+  color: #06085c;
+  margin-bottom: 0px;
+}
+.menu p {
+  margin: 40px 0;
+  font-size: 12px;
+  color: #777;
+  font-weight: bold;
+  text-transform: uppercase;
+
+}
+.menu a {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  text-decoration: none;
+  font-size: 16px;
+  color: #333;
+  transition: 0.5s;
+  margin-bottom: 20px;
+}
+.menu a i {
+  margin-right: 10px;
+}
+.menu a.active, .menu a:hover {
+  background-color: #dfe0ff;
+  margin-top: 10px ;
+  color: #06085c;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+/*Header*/ 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s;
+  position: fixed;
+  top: 0;
+  left: 250px;
+  width: calc(100% - 250px);
+  padding: 10px 20px;
+  background-color: #fff;
+  z-index: 1000;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+}
+.menu-toggle {
+  cursor: pointer;
+}
+/*search bar*/
+.search-bar {
+  align-items: center;
+  margin-left: 20px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  padding: 5px 15px;
+  border: 1px solid #ddd;
+}
+.search-bar input {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 5px;
+}
+.search-results {
+  position: absolute;
+  top: 40px; /* Adjust this value to control dropdown position */
+  left: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none; /* Hidden by default */
+}
+
+.search-results p {
+  padding: 10px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.search-results p:hover {
+  background-color: #f1f1f1;
+}
+.user-icons {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  transition: margin-left 0.3s;
+}
+.user-icons i, .user-profile img {
+  margin-left: 15px;
+  cursor: pointer;
+}
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+.user-profile img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+/*user dropdown*/
+.user-profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.user-profile:hover {
+  background-color: #f5f5f5;
+}
+.user-profile img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+.user-profile span {
+  font-size: 14px;
+  color: #333;
+}
+  .user-profile .dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 200px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+    padding: 10px 0;
+  }
+  .user-profile .dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  .user-profile .dropdown-menu a:hover {
+    background-color: #f5f5f5;
+  }
+  .user-profile .dropdown-menu a i {
+    margin-right: 10px;
+    color: black;
+  }
+  .user-profile:hover .dropdown-menu {
+    display: block;
+  }
+  #logoutButton{    
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: .5s;
+  display: block;
+  margin: 0 auto;
+  width: fit-content  ;
+  }
+  #logoutButton:hover{
+    background-color: #c62c3c;
+  }
+
+/*logo rfmo*/
+.rfmo-container {
+  display: flex;
+  align-items: center;
+  margin-top: 70px;
+}
+.logo-rfmo {
+  margin-right: 20px;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+}
+.text h1 {
+  font-size: 36px;
+  margin: 0;
+}
+.text p {
+  font-size: 18px;
+  margin: 0;
+}
+
+/*status stok*/
+.stock-status {
+  width: 100%;  
+  text-align: center; 
+  padding: 0 20px; 
+  margin-bottom: 20px;
+}
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  gap: 5px;   
+}
+.status-item {
+  width: 280px;
+  background-color: #fff;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px;
+  text-align: center;  
+}
+.status-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+.status-item h3 {
+  font-size: 18px;
+  color: #234e8d;
+  margin: 0;
+}
+.status-item h3 span {
+  font-size: 16px;
+  color: #666;
+  display: block;
+} 
+.status-label {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 12px;
+  display: inline-block;
+  margin: 10px 0;
+}
+.not-overfished {
+  background-color: #d4f1d4;
+  color: #28a745;
+}
+.overfished {
+  background-color: #f8d7da;
+  color: #dc3545;
+}
+.unknown {
+  background-color: #f0f0f0;
+  color: #76777b;
+}
+.semi {
+  background-color: #fff5e3;
+  color: #ffc107;
+}
+.category {
+  font-size: 14px;
+  color: #888;
+}
+
+/*info card*/
+.info-cards {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px 0;
+  padding: 10px;
+  margin-top: 10px;
+}
+.card {
+  width: 20%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+.icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+.icon img {
+  width: 30px;
+  height: 30px;
+  color: #ffc107;
+}
+h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #333;
+}
+p {
+  font-size: 16px;
+  color: #666;
+}
+
+/*record fishing vessel*/
+.chart-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;  
+  margin-top: 50px;
+}
+.chart-container h3 {
+  font-size: 16px;
+  color: #003366;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+#catchChart {
+  width: 100%;  
+  height: 250px;
+}
+
+/*rangking*/
+.ranking-table {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;  
+  margin-top: 50px;
+}
+.data-source {
+  font-style: italic;
+  text-align: left;
+  margin-top: 10px;
+  color: red;
+}
+.ranking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;  
+}
+.ranking-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.year-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;  
+}
+
+.year-dropdown label {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.year-dropdown select {
+  padding: 5px 10px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table th, table td {
+  padding: 15px;
+  text-align: center;
+  font-size: 1rem;
+}
+table th {
+  background-color: #f0f9ff;
+  font-weight: bold;
+}
+table tr {
+  border-bottom: 1px solid #e5e7eb;  
+}
+.rank-1 {
+  background-color: #ffedd5;
+  color: #f97316;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-weight: bold;
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logbook Detail</title>
+    <link rel="stylesheet" href="css/logbook-dodi.css">       
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="img/logo.png" alt="Logo">
+            <h2>TunaLog.</h2>
+        </div>
+        <div class="menu">         
+            <a href="dash-board.html"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="pelabuhan.html"><i class="fas fa-building"></i> Pelabuhan</a>
+            <a href="form.html"><i class="fas fa-clipboard-check"></i> Report</a>           
+            <a href="rfmo.html" ><i class="fas fa-globe"></i> RFMO</a>
+            <a href="logbook.html"class="active"><i class="fas fa-clipboard-list"></i>Logbook Data</a>   
+            <a href="realtime.html"><i class="fas fa-business-time"></i>Real time</a>       
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="left-section">                
+                <div class="search-bar">
+                    <input type="text" placeholder="search">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            <div class="user-icons">
+                <div class="logout-icon">
+                    <i class="fas fa-power-off poweroff-icon" alt="Logout Icon" title="Logout"></i>
+                </div>
+                <div class="notification-icon">
+<i class="fas fa-bell" alt="Notification Icon" class="bell-icon" title="Notifications"></i>
+                    <span class="tooltip">Notification</span>
+                    <span class="tooltip">Notification</span>
+                </div>
+                <div class="user-profile">
+                    <img src="img/me.png" alt="User">
+                    <span>Tabina Irviana</span>
+                    
+                </div>
+            </div>
+        </div> 
+        <div class="dashboard"> 
+          <h2>Detail</h2> 
+          <div class="container">
+              <div class="card">
+                  <h3>Identitas</h3>
+                  <p><strong>Dodi Suredi</strong></p>
+                  <p><strong>SIPI</strong><br> DKP-12345-WPP-712</p>
+                  <p>Status Tanda Tangan Nahkoda: <span class="status sudah">Sudah</span></p>
+                  <p>Status Tanda Pengesahan: <span class="status proses">Proses</span></p>
+              </div>
+              <div class="card">
+                  <h3>Alamat dan Kontak</h3>
+                  <p><strong>Alamat</strong><br>Surabaya<br>Jln Ahmad Yani 321546</p>                  
+                  <p><strong>Email</strong><br>dodisuredi@mail.com</p>
+                  <p><strong>Phone Number</strong><br>08XXXXXXXX</p>
+              </div>
+              <div class="card">
+                  <h3>Hasil Tangkapan</h3>
+                  <p><strong>Jenis Ikan</strong><br>Albacore</p>                  
+                  <p><strong>Jumlah Tangkapan (Kg)</strong><br>23402</p>
+                  <p><strong>Metode Penanganan</strong><br>Pembekuan</p>
+              </div>
+              <div class="card">
+                  <h3>Rincian Pelaporan</h3>
+                  <p><strong>Tanggal Keberangkatan</strong><br>21 Juni 2024</p>                  
+                  <p><strong>Tanggal Kedatangan</strong><br>07 September 2024</p>
+                  <p><strong>Verifikasi Dokumen</strong><br><span class="status sudah">Sudah</span></p>
+                  <p><strong>Verifikasi Hasil Tangkapan</strong><br><span class="status belum">Belum</span></p>
+              </div>
+          </div>
+          <div class="container">
+            <div class="order-list">
+              <h3>Rincian SIPI</h3>
+              <div class="pdf-viewer">
+                <iframe 
+                  src="contoh SIPI.pdf" 
+                  width="100%" 
+                  height="600px" 
+                  title="PDF Viewer">
+                </iframe>
+              </div>
+              
+              <script>document.getElementById("zoomIn").addEventListener("click", function () {
+                const iframe = document.getElementById("pdfViewer");
+                const currentScale = iframe.style.transform ? parseFloat(iframe.style.transform.match(/scale\(([^)]+)\)/)[1]) : 1;
+                iframe.style.transform = `scale(${currentScale + 0.1})`;
+            });
+            
+            document.getElementById("zoomOut").addEventListener("click", function () {
+                const iframe = document.getElementById("pdfViewer");
+                const currentScale = iframe.style.transform ? parseFloat(iframe.style.transform.match(/scale\(([^)]+)\)/)[1]) : 1;
+                iframe.style.transform = `scale(${Math.max(0.5, currentScale - 0.1)})`; // Prevent zooming out too much
+            });
+            
+            document.getElementById("download").addEventListener("click", function () {
+                const link = document.createElement("a");
+                link.href = "public/contoh%20SIPI.pdf"; // File path
+                link.download = "contoh_SIPI.pdf"; // Suggested file name
+                link.click();
+            });
+            
+            document.getElementById("print").addEventListener("click", function () {
+                const iframe = document.getElementById("pdfViewer");
+                iframe.contentWindow.focus();
+                iframe.contentWindow.print();
+            });
+            </script>
+            </div>
+          </div>
+          
+          <div class="buttons">
+              <div class="confirm"><button >Konfirmasi</button></div>
+              <div class="setuju"><button>Setujui</button></div>
+          </div>
+        </div>        
+    </div>    
+</body>
+</html>
+
+
