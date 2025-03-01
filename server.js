@@ -203,6 +203,6 @@ app.use((req, res) => {
   res.status(404).send('404 - Not Found');
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Server running on port ${process.env.PORT || 3000}`);
 });
