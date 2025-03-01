@@ -110,7 +110,7 @@
         async function fetchLogbookData() {
             tableBody.innerHTML = '<tr><td colspan="22">Loading...</td></tr>';
             try {
-                const response = await fetch('http://localhost:3000/logbooks', {
+                const response = await fetch('/logbooks', {
                     method: 'GET',
                     credentials: 'include',
                 }); 
