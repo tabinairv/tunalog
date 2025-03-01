@@ -214,7 +214,7 @@
     }
 
     try {
-        const response = await fetch('http://localhost:3000/logbook', {
+        const response = await fetch('/logbook', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ namaKapal, namaPemilik, nomorPerizinan, transmiterSPKP, tripKe, 
