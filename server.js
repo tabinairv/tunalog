@@ -6,10 +6,9 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const path = require('path');
 const app = express();
 const PORT= process.env.PORT || 3000;;
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/prototipe-tunalog';
 
 //mongoDB connect
-mongoose.connect('mongodb+srv://tabinairviana04:WVn3r%Azkm!6ZV7@cluster0.dqxg4.mongodb.net/prototipe-tunalog?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.log('MongoDB connection error:', err));
 
@@ -28,7 +27,7 @@ app.use(express.static(path.join(__dirname,'public'), {
 
 
 const store = new MongoDBStore({
-  uri:'mongodb://localhost:27017/prototipe-tunalog',
+  uri:process.env.MONGODB_URI,
   collection: 'session'
 });
 
