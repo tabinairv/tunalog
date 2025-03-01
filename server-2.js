@@ -7,7 +7,7 @@ const app = express();
 const PORT= 3000;
 
 //mongoDB connect
-mongoose.connect('mongodb://localhost:27017/prototipe-tunalog')
+mongoose.connect('mongodb+srv://tabinairviana04:WVn3r%Azkm!6ZV7@cluster0.dqxg4.mongodb.net/prototipe-tunalog?retryWrites=true&w=majority&appName=Cluster0')
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.log('MongoDB connection error:', err));
 
