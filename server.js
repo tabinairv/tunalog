@@ -5,7 +5,7 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const path = require('path');
 const app = express();
-const PORT= 3000;
+const PORT= process.env.PORT || 3000;;
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/prototipe-tunalog';
 
 //mongoDB connect
