@@ -7,6 +7,8 @@ const path = require('path');
 const app = express();
 const PORT= process.env.PORT || 3000;;
 
+console.log('Starting server...');
+
 //mongoDB connect
 mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('Connected to MongoDB'))
@@ -25,11 +27,12 @@ app.use(express.static(path.join(__dirname,'public'), {
   }
 }));
 
-
+console.log('Setting up session store...');
 const store = new MongoDBStore({
   uri:process.env.MONGODB_URI,
   collection: 'session'
 });
+store.on('error', (error) => console.error('Session store error:', error));
 
 app.use(session({
   secret:'your-session-secret',
@@ -138,6 +141,7 @@ app.post('/logout', isAuthenticated, (req, res) => {
 
 //logbook
 app.post('/logbook', async (req, res) => {
+  console.log('POST /logbook hit with body:', req.body);
   try {
     const { namaKapal, namaPemilik, nomorPerizinan, transmiterSPKP, tripKe, 
           jenisAPI, grossTonage, panjangKapal, radioPanggil, tandaPengenalKapal, awakKapalWNI, 
@@ -147,7 +151,9 @@ app.post('/logbook', async (req, res) => {
           jenisAPI, grossTonage, panjangKapal, radioPanggil, tandaPengenalKapal, awakKapalWNI, 
           awakKapalWNA, wppnri, daerahPenangkapanIkan, pelabuhanKeberangkatan, pelabuhanKedatangan, tanggalKeberangkatan,
           tanggalKedatangan, lintang, bujur, jenisIkan, jumlahEkor, berat });
+        console.log('Saving logbook to MongoDB...');
         await newLogbook.save();
+        console.log('Logbook saved successfully');
         res.status(201).json({success: true, message:'Data berhasil dimasukan'});
       }
       catch (error) {    
