@@ -5,7 +5,7 @@
       "src": "server.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["**/*"] // Include all files in the build
+        "includeFiles": ["**/*"] 
       }
     }
   ],
@@ -16,6 +16,6 @@
     }
   ],
   "build": {
-    "cache": false // Disable build caching globally
+    "cache": false 
   }
 }
